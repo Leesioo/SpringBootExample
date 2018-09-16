@@ -18,7 +18,7 @@ public class Insurance {
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date expireDate;
-    @ManyToOne
+    @ManyToOne (cascade=CascadeType.ALL)
     @JoinColumn (name="vehicle_id")
     private Vehicle vehicle;
 

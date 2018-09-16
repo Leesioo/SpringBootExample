@@ -16,7 +16,7 @@ public class Customer {
     private String firstName;
     @Column
     private String lastName;
-    @ManyToMany(mappedBy = "customers")
+    @ManyToMany(mappedBy = "customers", cascade=CascadeType.ALL)
     private Set<Vehicle> vehicles;
 
     public Customer() {

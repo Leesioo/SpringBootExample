@@ -19,9 +19,9 @@ public class Vehicle {
     private String registrationNumber;
     @Column
     private Integer productionDate;
-    @OneToMany(mappedBy = "vehicle")
+    @OneToMany(mappedBy = "vehicle", cascade=CascadeType.ALL)
     private Set<Insurance> insurances;
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "vehicles_customer", joinColumns = {@JoinColumn(name = "vehicle_id")}, inverseJoinColumns = {@JoinColumn(name="customer_id")})
     private Set<Customer> customers;
 
