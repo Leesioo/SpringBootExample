@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista klientow</title>
+</head>
+<body>
+<ul>
+    <li>
+        <a th:href="@{'/vehicle/list'}" th:text="${'przejdz do listy pojazdow'}"></a>
+    </li>
+    <li>
+        <a th:href="@{'/insurance/list'}" th:text="${'przejdz do listy polis'}"></a>
+    </li>
+    <br>
+    <li>
+        <a th:href="@{'/customer/add'}" th:text="${'dodaj nowego klienta'}"></a>
+    </li>
+    <br>
+    <li th:each="customer : ${customers}">
+        <a th:href="@{'/customer/'+${customer.id}+'/edit'}" th:text="${customer.firstName + ' ' + customer.lastName}"></a>
+        <a th:href="@{'/customer/'+${customer.id}+'/delete'}" th:text="${'(skasuj)'}"></a>
+    </li>
+</ul>
+</body>
+</html>

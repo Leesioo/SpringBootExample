@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja pojazdu</title>
+</head>
+<body>
+<form method="post" th:action="@{/vehicle/save}" th:object="${vehicle}">
+    <p>ID</p><input type="text" th:field="*{id}" readonly="readonly"/><br>
+    <p>Marka</p><input type="text" th:field="*{firm}"/><br>
+    <p>Model</p><input type="text" th:field="*{model}"/><br>
+    <p>Nr rej</p><input type="text" th:field="*{registrationNumber}"/><br>
+    <p>Data prod.</p><input type="text" th:field="*{productionDate}"/><br>
+    <input type="submit" value="OK"/>
+</form>
+</body>
+</html>

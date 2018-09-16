@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Wszystko w jednym</title>
+</head>
+<body>
+<form method="post" th:action="@{/insurance/saveMaster}" th:object="${policyDto}">
+    Numer<input type="text" placeholder="number" th:field="*{number}"/><br>
+    Wartosc<input type="text" placeholder="value" th:field="*{value}"/><br>
+    Imie<input type="text" placeholder="firstName" th:field="*{firstName}"/><br>
+    Nazwisko<input type="text" placeholder="lastName" th:field="*{lastName}"/><br>
+    Marka<input type="text" placeholder="firm" th:field="*{firm}"/><br>
+    Model<input type="text" placeholder="model" th:field="*{model}"/><br>
+    Nr rej<input type="text" placeholder="registrationNumber" th:field="*{registrationNumber}"/><br>
+    Data prod.<input type="text" placeholder="productionDate" th:field="*{productionDate}"/><br>
+    <input type="submit" value="OK"/>
+</form>
+</body>
+</html>

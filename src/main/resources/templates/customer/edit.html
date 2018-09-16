@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja klienta</title>
+</head>
+<body>
+<form method="post" th:action="@{/customer/save}" th:object="${customer}">
+    ID<input type="text" th:field="*{id}" readonly="readonly"/><br>
+    Imie<input type="text" th:field="*{firstName}"/><br>
+    Nazwisko<input type="text" th:field="*{lastName}"/><br>
+    <input type="submit" value="OK"/>
+</form>
+</body>
+</html>

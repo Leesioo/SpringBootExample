@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja polisy</title>
+</head>
+<body>
+<form method="post" th:action="@{/insurance/save}" th:object="${insurance}">
+    ID<input type="text" th:field="*{id}" readonly="readonly"/><br>
+    Numer<input type="text" th:field="*{number}"/><br>
+    Wartosc<input type="text" th:field="*{value}"/><br>
+    <input type="submit" value="OK"/>
+</form>
+</body>
+</html>

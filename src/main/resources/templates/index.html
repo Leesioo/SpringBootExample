@@ -11,5 +11,18 @@
 <a href="reset"> zeruj </a>
 <br>
 <a href="setcounter"> ustaw wartosc licznika </a>
+<br>
+<hr>
+<br>
+<li>
+    <a th:href="@{'/customer/list'}" th:text="${'przejdz do listy klientow'}"></a>
+</li>
+<li>
+    <a th:href="@{'/vehicle/list'}" th:text="${'przejdz do listy pojazdow'}"></a>
+</li>
+<li>
+    <a th:href="@{'/insurance/list'}" th:text="${'przejdz do listy polis'}"></a>
+</li>
+
 </body>
 </html>
