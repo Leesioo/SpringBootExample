@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.sdacademy.store.components.MyCounter;
+import pl.sdacademy.store.services.CustomerService;
 
 @Controller
 @RequestMapping("/")
 public class IndexController {
 
     @Autowired
-    private MyCounter myCounter;
+    private CustomerService customerService;
 
-    @RequestMapping("/index")
-    public String showIndex(String firstName, ModelMap modelMap) {
-        modelMap.addAttribute("counter", myCounter.increment());
+    @RequestMapping
+    public String showIndex(ModelMap modelMap) {
+        modelMap.addAttribute("customers", customerService.findAll());
         return "index";
     }
 }

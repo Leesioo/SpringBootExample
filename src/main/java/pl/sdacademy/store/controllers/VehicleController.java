@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.sdacademy.store.exceptions.WrongObjectException;
 import pl.sdacademy.store.model.Vehicle;
 import pl.sdacademy.store.services.VehicleService;
 
@@ -37,6 +38,9 @@ public class VehicleController {
     @GetMapping("/{id}/edit")
     public String showEditVehicles(@PathVariable("id") Integer id, Model model) {
         Optional<Vehicle> first = vehicleService.findById(id);
+        if (!first.isPresent()) {
+            throw new WrongObjectException("Nie ma takiego pojazdu");
+        }
         model.addAttribute("vehicle", first.get());
         return "vehicle/edit";
     }

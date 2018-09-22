@@ -32,7 +32,7 @@ public class CustomerController {
     @GetMapping("/{id}/edit")
     public String showEditCustomer(@PathVariable("id") Integer id, Model model) {
         Optional<Customer> first = customerService.findById(id);
-        if (first.get() == null) {
+        if (!first.isPresent()) {
             throw new WrongObjectException("Nie ma takiego klienta");
         }
         model.addAttribute("customer", first.get());

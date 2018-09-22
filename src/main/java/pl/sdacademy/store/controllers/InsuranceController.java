@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.sdacademy.store.dto.PolicyDto;
+import pl.sdacademy.store.exceptions.WrongObjectException;
 import pl.sdacademy.store.model.Customer;
 import pl.sdacademy.store.model.Insurance;
 import pl.sdacademy.store.model.Vehicle;
@@ -47,8 +48,10 @@ public class InsuranceController {
 
     @GetMapping("/{id}/edit")
     public String showEditInsurance(@PathVariable("id") Integer id, Model model) {
-//        Optional<Insurance> first = Arrays.stream(insurances).filter(c -> c.getId().equals(id)).findFirst();
         Optional<Insurance> first = insuranceService.findById(id);
+        if (!first.isPresent()) {
+            throw new WrongObjectException("Nie ma takiej polisy");
+        }
         model.addAttribute("insurance", first.get());
         return "insurance/edit";
     }

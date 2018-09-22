@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,10 +10,10 @@
     <title>Top navbar example for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="navbar-top.css" rel="stylesheet">
+    <link th:href="@{/navbar-top.css}" rel="stylesheet">
   </head>
 
   <body>
@@ -26,13 +26,16 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" th:href="@{/#}">Strona główna <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" th:href="@{/customer/list}">Klienci</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link" th:href="@{/vehicle/list}">Pojazdy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/insurance/list}">Ubezpieczenia</a>
           </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
@@ -42,12 +45,8 @@
       </div>
     </nav>
 
-    <main role="main" class="container">
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-        <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button">View navbar docs &raquo;</a>
-      </div>
+    <main role="main" layout:fragment="container" class="container">
+      NIC
     </main>
 
     <!-- Bootstrap core JavaScript
@@ -55,7 +54,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script th:src="@{/assets/js/vendor/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
   </body>
 </html>

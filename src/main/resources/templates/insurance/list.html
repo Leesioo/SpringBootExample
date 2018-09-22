@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
 <head>
     <meta charset="UTF-8">
     <title>Lista klientow</title>
 </head>
 <body>
-<ul>
-    <li>
-        <a th:href="@{'/customer/list'}" th:text="${'przejdz do listy klientow'}"></a>
-    </li>
-    <li>
-        <a th:href="@{'/vehicle/list'}" th:text="${'przejdz do listy pojazdow'}"></a>
-    </li>
+<main role="main" layout:fragment="container" class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Number</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="insurance : ${insurances}"}>
+            <th scope="row" th:text="${insurance.id}">1</th>
+            <td th:text="${insurance.number}">a</td>
+            <td><a th:href="@{'/insurance/'+${insurance.id}+'/edit'}" th:text="${'(edytuj)'}"></a></td>
+            <td><a th:href="@{'/insurance/'+${insurance.id}+'/delete'}" th:text="${'(skasuj)'}"></a></td>
+        </tr>
+        </tbody>
+    </table>
     <br>
-    <li>
-        <a th:href="@{'/insurance/add'}" th:text="${'dodaj nową polisę'}"></a>
-    </li>
-    <br>
-    <li th:each="insurance : ${insurances}">
-        <a th:href="@{'/insurance/'+${insurance.id}+'/edit'}" th:text="${insurance.number}"></a>
-        <a th:href="@{'/insurance/'+${insurance.id}+'/delete'}" th:text="${'(skasuj)'}"></a>
-    </li>
-</ul>
+    <a th:href="@{'/insurance/addMaster'}" th:text="${'dodaj nową polisę'}"></a>
+</main>
 </body>
 </html>

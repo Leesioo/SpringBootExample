@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
 <head>
     <meta charset="UTF-8">
     <title>Edycja polisy</title>
 </head>
 <body>
+<main role="main" layout:fragment="container" class="container">
 <form method="post" th:action="@{/insurance/save}" th:object="${insurance}">
-    ID<input type="text" th:field="*{id}" readonly="readonly"/><br>
-    Numer<input type="text" th:field="*{number}"/><br>
-    Wartosc<input type="text" th:field="*{value}"/><br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Pole</th>
+            <th scope="col">Wartość</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">ID</th>
+            <td><input type="text" th:field="*{id}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Numer</th>
+            <td><input type="text" th:field="*{number}"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Wartosc</th>
+            <td><input type="text" th:field="*{value}"/></td>
+        </tr>
+        </tbody>
+    </table>
     <input type="submit" value="OK"/>
 </form>
+</main>
 </body>
 </html>

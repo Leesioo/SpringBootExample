@@ -1,20 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
 <head>
     <meta charset="UTF-8">
     <title>Wszystko w jednym</title>
 </head>
 <body>
+<main role="main" layout:fragment="container" class="container">
 <form method="post" th:action="@{/insurance/saveMaster}" th:object="${policyDto}">
-    Numer<input type="text" placeholder="number" th:field="*{number}"/><br>
-    Wartosc<input type="text" placeholder="value" th:field="*{value}"/><br>
-    Imie<input type="text" placeholder="firstName" th:field="*{firstName}"/><br>
-    Nazwisko<input type="text" placeholder="lastName" th:field="*{lastName}"/><br>
-    Marka<input type="text" placeholder="firm" th:field="*{firm}"/><br>
-    Model<input type="text" placeholder="model" th:field="*{model}"/><br>
-    Nr rej<input type="text" placeholder="registrationNumber" th:field="*{registrationNumber}"/><br>
-    Data prod.<input type="text" placeholder="productionDate" th:field="*{productionDate}"/><br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Pole</th>
+            <th scope="col">Wartość</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">Numer</th>
+            <td><input type="text" th:field="*{number}"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Wartosc</th>
+            <td><input type="text" th:field="*{value}"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Imie</th>
+            <td><input type="text" th:field="*{firstName}"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Nazwisko</th>
+            <td><input type="text" th:field="*{lastName}"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Marka</th>
+            <td><input type="text" th:field="*{firm}"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Model</th>
+            <td><input type="text" th:field="*{model}"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Nr rej</th>
+            <td><input type="text" th:field="*{registrationNumber}"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Data prod.</th>
+            <td><input type="text" th:field="*{productionDate}"/></td>
+        </tr>
+        </tbody>
+    </table>
     <input type="submit" value="OK"/>
 </form>
+</main>
 </body>
 </html>

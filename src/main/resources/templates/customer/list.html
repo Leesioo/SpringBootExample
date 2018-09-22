@@ -1,26 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
 <head>
     <meta charset="UTF-8">
     <title>Lista klientow</title>
 </head>
 <body>
-<ul>
-    <li>
-        <a th:href="@{'/vehicle/list'}" th:text="${'przejdz do listy pojazdow'}"></a>
-    </li>
-    <li>
-        <a th:href="@{'/insurance/list'}" th:text="${'przejdz do listy polis'}"></a>
-    </li>
+<main role="main" layout:fragment="container" class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer : ${customers}"}>
+            <th scope="row" th:text="${customer.id}">1</th>
+            <td th:text="${customer.firstName}">a</td>
+            <td th:text="${customer.lastName}">a</td>
+            <td><a th:href="@{'/customer/'+${customer.id}+'/edit'}" th:text="${'(edytuj)'}"></a></td>
+            <td><a th:href="@{'/customer/'+${customer.id}+'/delete'}" th:text="${'(skasuj)'}"></a></td>
+        </tr>
+        </tbody>
+    </table>
     <br>
-    <li>
-        <a th:href="@{'/customer/add'}" th:text="${'dodaj nowego klienta'}"></a>
-    </li>
-    <br>
-    <li th:each="customer : ${customers}">
-        <a th:href="@{'/customer/'+${customer.id}+'/edit'}" th:text="${customer.firstName + ' ' + customer.lastName}"></a>
-        <a th:href="@{'/customer/'+${customer.id}+'/delete'}" th:text="${'(skasuj)'}"></a>
-    </li>
-</ul>
+    <a th:href="@{'/customer/add'}" th:text="${'dodaj nowego klienta'}"></a>
+</main>
 </body>
 </html>
