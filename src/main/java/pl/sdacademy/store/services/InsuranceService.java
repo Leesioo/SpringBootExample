@@ -33,4 +33,11 @@ public class InsuranceService {
     public void deleteById(Integer id) {
         insuranceRepository.deleteById(id);
     }
+
+    public Insurance update(Insurance insurance) {
+        return insuranceRepository.findAll().stream()
+                .filter(v -> v.getNumber().equals(insurance.getNumber()))
+                .findFirst()
+                .orElse(insurance);
+    }
 }

@@ -33,4 +33,12 @@ public class CustomerService {
     public void deleteById(Integer id) {
         customerRepository.deleteById(id);
     }
+
+    public Customer update(Customer customer) {
+        return customerRepository.findAll().stream()
+                .filter(c -> c.getLastName().equals(customer.getLastName()))
+                .filter(c -> c.getFirstName().equals(customer.getFirstName()))
+                .findFirst()
+                .orElse(customer);
+    }
 }

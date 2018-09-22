@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.sdacademy.store.exceptions.WrongObjectException;
 import pl.sdacademy.store.model.Customer;
 import pl.sdacademy.store.services.CustomerService;
 
@@ -31,6 +32,9 @@ public class CustomerController {
     @GetMapping("/{id}/edit")
     public String showEditCustomer(@PathVariable("id") Integer id, Model model) {
         Optional<Customer> first = customerService.findById(id);
+        if (first.get() == null) {
+            throw new WrongObjectException("Nie ma takiego klienta");
+        }
         model.addAttribute("customer", first.get());
         return "customer/edit";
     }

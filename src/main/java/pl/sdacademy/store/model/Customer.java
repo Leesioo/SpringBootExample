@@ -1,5 +1,7 @@
 package pl.sdacademy.store.model;
 
+import pl.sdacademy.store.dto.CustomerDto;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +28,11 @@ public class Customer {
 
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Customer(CustomerDto customerDto) {
+        this.firstName = customerDto.getFirstName();
+        this.lastName = customerDto.getLastName();
     }
 
     public Integer getId() {

@@ -33,4 +33,11 @@ public class VehicleService {
     public void deleteById(Integer id) {
         vehicleRepository.deleteById(id);
     }
+
+    public Vehicle update(Vehicle vehicle) {
+        return vehicleRepository.findAll().stream()
+                .filter(v -> v.getRegistrationNumber().equals(vehicle.getRegistrationNumber()))
+                .findFirst()
+                .orElse(vehicle);
+    }
 }

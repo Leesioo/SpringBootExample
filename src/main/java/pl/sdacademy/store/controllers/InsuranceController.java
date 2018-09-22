@@ -82,40 +82,17 @@ public class InsuranceController {
         } finally {
             data = new Date();
         }
-        Optional<Vehicle> vehicle = vehicleService.findAll().stream()
-                .filter(v -> v.getRegistrationNumber().equals(policyDto.getRegistrationNumber()))
-                .findFirst();
-        Vehicle vehicleObject = null;
-        if (!vehicle.isPresent()) {
-            vehicleObject = new Vehicle(policyDto.getFirm(), policyDto.getModel(), policyDto.getRegistrationNumber(), policyDto.getProductionDate());
-        } else {
-            vehicleObject = vehicle.get();
-            vehicleObject.setFirm(policyDto.getFirm());
-            vehicleObject.setModel(policyDto.getModel());
-            vehicleObject.setProductionDate(policyDto.getProductionDate());
-        }
-        Optional<Insurance> insurance = insuranceService.findAll().stream()
-                .filter(i -> i.getNumber().equals(policyDto.getNumber()))
-                .findFirst();
-        Insurance insuranceObject = null;
-        if (!insurance.isPresent()) {
-            insuranceObject = new Insurance(policyDto.getNumber(), policyDto.getValue(), data);
-        } else {
-            insuranceObject = insurance.get();
-            insuranceObject.setValue(policyDto.getValue());
-            insuranceObject.setExpireDate(data);
-        }
-        Customer customer = customerService.findAll().stream()
-                .filter(c -> c.getLastName().equals(policyDto.getLastName()))
-                .filter(c -> c.getFirstName().equals(policyDto.getFirstName()))
-                .findFirst()
-                .orElse(new Customer(policyDto.getFirstName(), policyDto.getLastName()));
-        customer.addVehicle(vehicleObject);
-        vehicleObject.addCustomer(customer);
-        vehicleObject.addInsurance(insuranceObject);
-        insuranceObject.setVehicle(vehicleObject);
 
-        insuranceService.save(insuranceObject);
+        Vehicle vehicle = vehicleService.update(new Vehicle(policyDto.getFirm(), policyDto.getModel(), policyDto.getRegistrationNumber(), policyDto.getProductionDate()));
+        Insurance insurance = insuranceService.update(new Insurance(policyDto.getNumber(), policyDto.getValue(), data));
+        Customer customer = customerService.update(new Customer(policyDto.getFirstName(), policyDto.getLastName()));
+
+        customer.addVehicle(vehicle);
+        vehicle.addCustomer(customer);
+        vehicle.addInsurance(insurance);
+        insurance.setVehicle(vehicle);
+
+        insuranceService.save(insurance);
 
         return "redirect:/insurance/list";
     }
