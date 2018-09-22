@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<div th:if="${counter!=null}">Licznik <span th:text="${counter}"></span></div>
+<a href="hello"> przejdz do przywitania </a>
+<br>
+<a href="reset"> zeruj </a>
+<br>
+<a href="setcounter"> ustaw wartosc licznika </a>
+<br>
+<hr>
+<br>
+<li>
+    <a th:href="@{'/customer/list'}" th:text="${'przejdz do listy klientow'}"></a>
+</li>
+<li>
+    <a th:href="@{'/vehicle/list'}" th:text="${'przejdz do listy pojazdow'}"></a>
+</li>
+<li>
+    <a th:href="@{'/insurance/list'}" th:text="${'przejdz do listy polis'}"></a>
+</li>
+
+</body>
+</html>
