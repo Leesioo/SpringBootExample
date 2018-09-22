@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+</head>
+<body>
+<main role="main" layout:fragment="container" class="container">
+<form method="post" th:action="@{/login}">
+    <table class="table">
+        <tbody>
+        <tr>
+            <th scope="row">Login</th>
+            <td><input type="text" th:field="*{login}"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Password</th>
+            <td><input type="password" th:field="*{password}"/></td>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="OK"/>
+</form>
+</main>
+</body>
+</html>

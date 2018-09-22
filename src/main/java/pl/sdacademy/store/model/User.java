@@ -14,7 +14,6 @@ public class User {
     private String username;
     @Column
     private String password;
-    @Column
     private String passwordConfirm;
     @Column
     private String email;

@@ -6,10 +6,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sdacademy.store.model.User;
+import pl.sdacademy.store.repositories.RoleRepository;
 import pl.sdacademy.store.repositories.UserRepository;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,7 +20,11 @@ import java.util.stream.Collectors;
 public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -27,10 +34,16 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
 
         Set<GrantedAuthority> grantedAuthorities =
-            user.getRoles().stream()
-                .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getName()))
-                .collect(Collectors.toSet());
+                user.getRoles().stream()
+                        .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getName()))
+                        .collect(Collectors.toSet());
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+    }
+
+    public void save(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(new HashSet<>(roleRepository.findAll()));
+        userRepository.save(user);
     }
 }
