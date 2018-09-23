@@ -14,12 +14,13 @@ public class User {
     private String username;
     @Column
     private String password;
+    @Transient
     private String passwordConfirm;
     @Column
     private String email;
     @Column
     private String name;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="user_role",
     joinColumns = @JoinColumn(name ="user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
